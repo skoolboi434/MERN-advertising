@@ -1,27 +1,9 @@
 import express from 'express';
 const router = express.Router();
-import asyncHandler from '../middleware/asyncHandler.js';
-import Publication from '../models/publicationModel.js';
+import { getPublications, getPublicationById } from '../controllers/publicationController.js';
 
-router.get(
-  '/',
-  asyncHandler(async (req, res) => {
-    const publications = await Publication.find({});
-    res.json(publications);
-  })
-);
+router.route('/').get(getPublications);
 
-router.get(
-  '/:id',
-  asyncHandler(async (req, res) => {
-    const publication = await Publication.findById(req.params.id);
-
-    if (publication) {
-      return res.json(publication);
-    }
-
-    res.status(404).json({ message: 'Publication not found' });
-  })
-);
+router.route('/:id').get(getPublicationById);
 
 export default router;
