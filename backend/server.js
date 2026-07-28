@@ -1,9 +1,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+import publicationRoutes from './routes/publicationRoutes.js';
 dotenv.config();
 
-import publications from './data/publications.js';
 const port = process.env.PORT || 5050;
+
+connectDB(); // Connect to mongoDB
 
 const app = express();
 
@@ -11,15 +14,8 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
+app.use('/api/publications', publicationRoutes);
+
 app.listen(port, () => {
   console.log(`Server running on ${port}`);
-});
-
-app.get('/api/publications', (req, res) => {
-  res.json(publications);
-});
-
-app.get('/api/publications/:id', (req, res) => {
-  const publication = publications.find(p => p._id === req.params.id);
-  res.json(publication);
 });
