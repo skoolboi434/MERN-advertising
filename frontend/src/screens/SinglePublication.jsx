@@ -9,6 +9,8 @@ const SinglePublication = () => {
   const { id: publicationId } = useParams();
   const publication = publications.find(p => p._id === publicationId);
 
+  const parentPub = publications.find(p => p._id === publication.parentPublication);
+
   console.log(publication);
   return (
     <Container>
@@ -67,7 +69,7 @@ const SinglePublication = () => {
               <Col>
                 <p className='mb-0'>Parent Publication:</p>
                 <span>
-                  <strong>{publication.parentPublication}</strong>
+                  <strong>{parentPub ? parentPub.name : 'No'}</strong>
                 </span>
               </Col>
             </Row>
