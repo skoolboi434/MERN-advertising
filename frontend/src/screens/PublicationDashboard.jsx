@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Table } from 'react-bootstrap';
-import publications from '../publications';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const PublicationDashboard = () => {
+  const [publications, setPublications] = useState([]);
+
+  useEffect(() => {
+    const fetchPublications = async () => {
+      const { data } = await axios.get('/api/publications');
+      setPublications(data);
+    };
+
+    fetchPublications();
+  }, []);
+
   return (
     <Container className='border border-dark rounded shadow bg-white py-3'>
       <div className='border-bottom border-dark mb-5'>

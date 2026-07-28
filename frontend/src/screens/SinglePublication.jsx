@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import publications from '../publications';
+import axios from 'axios';
 import { Button, Container, Col, Row, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaComment, FaPencilAlt, FaPlus } from 'react-icons/fa';
 
 const SinglePublication = () => {
+  const [publication, setPublication] = useState({});
+  const [publications, setPublications] = useState([]);
+
+  useEffect(() => {
+    const fetchPublications = async () => {
+      const { data } = await axios.get('/api/publications');
+      setPublications(data);
+    };
+
+    fetchPublications();
+  }, []);
+
   const { id: publicationId } = useParams();
-  const publication = publications.find(p => p._id === publicationId);
+
+  useEffect(() => {
+    const fetchPublication = async () => {
+      const { data } = await axios.get(`/api/publications/${publicationId}`);
+      setPublication(data);
+    };
+
+    fetchPublication();
+  }, [publicationId]);
 
   const parentPub = publications.find(p => p._id === publication.parentPublication);
 

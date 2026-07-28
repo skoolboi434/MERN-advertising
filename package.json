@@ -1,0 +1,23 @@
+{
+  "name": "mern-advertising",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Travis Davis",
+  "license": "MIT",
+  "description": "Advertising system built with the MERN Stack",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.4",
+    "dotenv": "^17.4.2",
+    "nodemon": "^3.1.14"
+  }
+}
