@@ -1,0 +1,31 @@
+// Bootstrap theme overrides — set these before importing Bootstrap's own SCSS,
+// since Bootstrap builds all of its component styles (buttons, tables, badges,
+// nav, etc.) from these variables.
+
+$primary: #2c5f6f;
+$secondary: #5a6470;
+$success: #3b7a57;
+$danger: #b33a3a;
+$warning: #d68c21;
+$info: #3a8fb7;
+$light: #f4f6f7;
+$dark: #1e2a32;
+
+$body-bg: #f7f8f9;
+$body-color: #22303a;
+
+$border-radius: 0.375rem;
+$font-family-sans-serif:
+  'Segoe UI',
+  system-ui,
+  -apple-system,
+  sans-serif;
+
+th {
+  span,
+  a {
+    font-weight: 400;
+  }
+}
+
+@import '~bootstrap/scss/bootstrap';

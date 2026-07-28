@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Table } from 'react-bootstrap';
-import axios from 'axios';
+import { useGetPublicationsQuery } from '../slices/publicationApiSlice';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+
 import { Link } from 'react-router-dom';
 
 const PublicationDashboard = () => {
-  const [publications, setPublications] = useState([]);
-
-  useEffect(() => {
-    const fetchPublications = async () => {
-      const { data } = await axios.get('/api/publications');
-      setPublications(data);
-    };
-
-    fetchPublications();
-  }, []);
+  const { data: publications, isLoading, error } = useGetPublicationsQuery();
 
   return (
     <Container className='border border-dark rounded shadow bg-white py-3'>
@@ -28,32 +22,42 @@ const PublicationDashboard = () => {
           </a>
         </div>
       </div>
-      <Table bordered hover>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Publication Name</th>
-            <th>Status</th>
-            <th>Created By</th>
-          </tr>
-        </thead>
-        <tbody>
-          {publications.map(pub => (
-            <tr key={pub._id}>
-              <th>#{pub._id}</th>
-              <th>
-                <Link to={`/publications/${pub._id}`}>{pub.name}</Link>
-              </th>
-              <th>
-                <span className='text-capitalize'>{pub.status}</span>
-              </th>
-              <th>
-                <span className='text-capitalize'>{pub.user.firstname}</span>
-              </th>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error?.data?.message || error.error}</Message>
+      ) : (
+        <>
+          <Table bordered hover>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Publication Name</th>
+                <th>Status</th>
+                <th>Created By</th>
+              </tr>
+            </thead>
+            <tbody>
+              {publications.map(pub => (
+                <tr key={pub._id}>
+                  <th>
+                    <span>#{pub._id}</span>
+                  </th>
+                  <th>
+                    <Link to={`/publications/${pub._id}`}>{pub.name}</Link>
+                  </th>
+                  <th>
+                    <span className='text-capitalize'>{pub.status}</span>
+                  </th>
+                  <th>
+                    <span className='text-capitalize'>{pub.user.firstname}</span>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </>
+      )}
     </Container>
   );
 };
