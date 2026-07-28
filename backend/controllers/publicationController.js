@@ -1,13 +1,13 @@
-import { describe } from 'node:test';
 import asyncHandler from '../middleware/asyncHandler.js';
 import Publication from '../models/publicationModel.js';
+import User from '../models/userModel.js';
 
 // @desc Fetch All Publications
 // @route GET /api/publications
 // @access Private
 
 const getPublications = asyncHandler(async (req, res) => {
-  const publications = await Publication.find({});
+  const publications = await Publication.find({}).populate('user', 'firstname lastname');
   res.json(publications);
 });
 
@@ -16,7 +16,7 @@ const getPublications = asyncHandler(async (req, res) => {
 // @access Private
 
 const getPublicationById = asyncHandler(async (req, res) => {
-  const publication = await Publication.findById(req.params.id);
+  const publication = await Publication.findById(req.params.id).populate('user', 'firstname lastname');
 
   if (publication) {
     return res.json(publication);

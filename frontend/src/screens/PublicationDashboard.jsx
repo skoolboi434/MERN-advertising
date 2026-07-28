@@ -34,6 +34,7 @@ const PublicationDashboard = () => {
             <th>ID</th>
             <th>Publication Name</th>
             <th>Status</th>
+            <th>Created By</th>
           </tr>
         </thead>
         <tbody>
@@ -45,6 +46,9 @@ const PublicationDashboard = () => {
               </th>
               <th>
                 <span className='text-capitalize'>{pub.status}</span>
+              </th>
+              <th>
+                <span className='text-capitalize'>{pub.user.firstname}</span>
               </th>
             </tr>
           ))}
