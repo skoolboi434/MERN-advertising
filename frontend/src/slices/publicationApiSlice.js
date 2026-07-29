@@ -32,8 +32,18 @@ export const publicationApiSlice = apiSlice.injectEndpoints({
         body: data
       }),
       invalidatesTags: ['Publication']
+    }),
+
+    addPublicationNote: builder.mutation({
+      query: ({ publicationId, ...noteData }) => ({
+        url: `${Publications_URL}/${publicationId}/notes`,
+        method: 'POST',
+        body: noteData
+      }),
+      keepUnusedDataFor: 5,
+      invalidatesTags: ['Publication']
     })
   })
 });
 
-export const { useGetPublicationsQuery, useGetSinglePublicationQuery, useCreatePublicationMutation, useUpdatePublicationMutation } = publicationApiSlice;
+export const { useGetPublicationsQuery, useGetSinglePublicationQuery, useCreatePublicationMutation, useUpdatePublicationMutation, useAddPublicationNoteMutation } = publicationApiSlice;

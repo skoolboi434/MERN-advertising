@@ -64,4 +64,24 @@ const updatePublication = asyncHandler(async (req, res) => {
   }
 });
 
-export { getPublications, getPublicationById, createPublication, updatePublication };
+// @desc Add publication note
+// @route POST /api/:id/notes
+// @access Private
+
+const createPublicationNote = asyncHandler(async (req, res) => {
+  const { content, noteType } = req.body;
+
+  const publication = await Publication.findById(req.params.id);
+
+  publication.notes.push({
+    author: req.user._id,
+    noteType,
+    content
+  });
+
+  await publication.save();
+
+  res.status(201).json(publication);
+});
+
+export { getPublications, getPublicationById, createPublication, updatePublication, createPublicationNote };

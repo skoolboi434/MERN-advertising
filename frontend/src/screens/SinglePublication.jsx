@@ -4,12 +4,17 @@ import axios from 'axios';
 import { Button, Container, Col, Row, Form, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaComment, FaPencilAlt, FaPlus } from 'react-icons/fa';
-import { useGetSinglePublicationQuery, useUpdatePublicationMutation } from '../slices/publicationApiSlice';
+import { useGetSinglePublicationQuery, useUpdatePublicationMutation, useAddPublicationNoteMutation } from '../slices/publicationApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { toast } from 'react-toastify';
 
 const SinglePublication = () => {
+  const initialNoteFormState = {
+    content: '',
+    noteType: ''
+  };
+
   const { id: publicationId } = useParams();
 
   const [publications, setPublications] = useState([]);
@@ -17,6 +22,27 @@ const SinglePublication = () => {
   const { data: publication, isLoading, error, refetch } = useGetSinglePublicationQuery(publicationId);
 
   const [updatePublication, { isLoading: loadingUpdate }] = useUpdatePublicationMutation();
+
+  const [addPublicationNote] = useAddPublicationNoteMutation();
+
+  const [noteFormData, setNoteFormData] = useState(initialNoteFormState);
+
+  const handleNoteFormChange = e => {
+    const { name, value } = e.target;
+    setNoteFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const submitNoteFormHandler = async e => {
+    e.preventDefault();
+    try {
+      await addPublicationNote({ publicationId, ...noteFormData }).unwrap();
+      toast.success('Note added');
+      setNoteFormData(initialNoteFormState);
+      refetch();
+    } catch (error) {
+      toast.error(error?.data?.message || error.error);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -254,16 +280,16 @@ const SinglePublication = () => {
                   </p>
                 </div>
 
-                <Form>
+                <Form onSubmit={submitNoteFormHandler}>
                   <Form.Group className='mb-3'>
                     <Form.Label>Publication Note</Form.Label>
-                    <Form.Control as='textarea' rows={5}></Form.Control>
+                    <Form.Control as='textarea' rows={5} name='content' value={noteFormData.content} onChange={handleNoteFormChange}></Form.Control>
                   </Form.Group>
 
                   <Form.Group>
                     <Form.Label>Note Type</Form.Label>
-                    <Form.Select aria-label='Note type select' className='mb-3'>
-                      <option>Open this select menu</option>
+                    <Form.Select aria-label='Note type select' className='mb-3' name='noteType' value={noteFormData.noteType} onChange={handleNoteFormChange} required>
+                      <option value=''>Select a note type</option>
                       <option value='general'>General</option>
                       <option value='reminder'>Reminder</option>
                       <option value='follow-up'>Follow Up</option>
@@ -278,7 +304,21 @@ const SinglePublication = () => {
                 <div className='note-list mt-5'>
                   <h5>Notes</h5>
 
-                  <p className='text-muted'>No notes added yet.</p>
+                  {publication.notes && publication.notes.length > 0 ? (
+                    [...publication.notes]
+                      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                      .map(note => (
+                        <div key={note._id} className='border-bottom pb-2 mb-2'>
+                          <div className='d-flex justify-content-between'>
+                            <span className='text-capitalize fw-bold'>{note.noteType}</span>
+                            <span className='text-muted small'>{new Date(note.createdAt).toLocaleString()}</span>
+                          </div>
+                          <p className='mb-0'>{note.content}</p>
+                        </div>
+                      ))
+                  ) : (
+                    <p className='text-muted'>No notes added yet.</p>
+                  )}
                 </div>
               </div>
             </Col>

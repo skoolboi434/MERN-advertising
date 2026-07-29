@@ -4,6 +4,7 @@ import { useGetPublicationsQuery, useCreatePublicationMutation } from '../slices
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { toast } from 'react-toastify';
+import { FaTrash } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
 
@@ -143,6 +144,7 @@ const PublicationDashboard = () => {
                 <th>Publication Name</th>
                 <th>Status</th>
                 <th>Created By</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -159,6 +161,9 @@ const PublicationDashboard = () => {
                   </th>
                   <th>
                     <span className='text-capitalize'>{pub.user.firstname}</span>
+                  </th>
+                  <th>
+                    <FaTrash className='text-danger' />
                   </th>
                 </tr>
               ))}
