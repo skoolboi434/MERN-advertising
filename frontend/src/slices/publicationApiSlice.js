@@ -15,8 +15,25 @@ export const publicationApiSlice = apiSlice.injectEndpoints({
         url: `${Publications_URL}/${publicationId}`
       }),
       keepUnusedDataFor: 5
+    }),
+
+    createPublication: builder.mutation({
+      query: data => ({
+        url: Publications_URL,
+        method: 'POST',
+        body: data
+      }),
+      invalidatesTags: ['Publication']
+    }),
+    updatePublication: builder.mutation({
+      query: data => ({
+        url: `${Publications_URL}/${data._id}`,
+        method: 'PUT',
+        body: data
+      }),
+      invalidatesTags: ['Publication']
     })
   })
 });
 
-export const { useGetPublicationsQuery, useGetSinglePublicationQuery } = publicationApiSlice;
+export const { useGetPublicationsQuery, useGetSinglePublicationQuery, useCreatePublicationMutation, useUpdatePublicationMutation } = publicationApiSlice;

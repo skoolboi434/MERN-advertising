@@ -26,4 +26,42 @@ const getPublicationById = asyncHandler(async (req, res) => {
   }
 });
 
-export { getPublications, getPublicationById };
+// @desc Create a publication
+// @route POST /api/publications
+// @access Private
+
+const createPublication = asyncHandler(async (req, res) => {
+  const { name, address, city, state, zipcode, parentPublication } = req.body;
+
+  const publication = new Publication({
+    user: req.user._id,
+    name,
+    address,
+    city,
+    state,
+    zipcode,
+    parentPublication: parentPublication || null
+  });
+
+  const createdPublication = await publication.save();
+  res.status(201).json(createdPublication);
+});
+
+// @desc Update publication
+// @route PUT /api/:id
+// @access Private
+
+const updatePublication = asyncHandler(async (req, res) => {
+  const { name, address, city, state, zipcode, parentPublication, status } = req.body;
+
+  const publication = await Publication.findById(req.params.id);
+
+  if (publication) {
+    ((publication.name = name), (publication.address = address), (publication.city = city), (publication.state = state), (publication.zipcode = zipcode), (publication.parentPublication = parentPublication || null), (publication.status = status));
+
+    const updatePublication = await publication.save();
+    res.json(updatePublication);
+  }
+});
+
+export { getPublications, getPublicationById, createPublication, updatePublication };
