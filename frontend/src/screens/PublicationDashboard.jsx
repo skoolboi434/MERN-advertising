@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Table, Toast, Modal, Form, Row, Col } from 'react-bootstrap';
-import { useGetPublicationsQuery, useCreatePublicationMutation } from '../slices/publicationApiSlice';
+import { useGetPublicationsQuery, useCreatePublicationMutation, useDeletePublicationMutation } from '../slices/publicationApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { toast } from 'react-toastify';
@@ -21,6 +21,8 @@ const PublicationDashboard = () => {
   const { data: publications, isLoading, error, refetch } = useGetPublicationsQuery();
 
   const [createPublication, { isLoading: loadingCreate }] = useCreatePublicationMutation();
+
+  const [deletePublication, { isLoading: LoadingDelete }] = useDeletePublicationMutation();
 
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState(initialFormState);
@@ -51,8 +53,16 @@ const PublicationDashboard = () => {
     }
   };
 
-  const deleteHandler = id => {
-    console.log('Delete', id);
+  const deleteHandler = async id => {
+    if (window.confirm('Are you sure you want to delete this Publication?')) {
+      try {
+        await deletePublication(id).unwrap();
+        toast.success('Publication deleted.');
+        refetch();
+      } catch (error) {
+        toast.error(error?.data?.message || error.message);
+      }
+    }
   };
 
   return (
@@ -163,7 +173,9 @@ const PublicationDashboard = () => {
                     <span className='text-capitalize'>{pub.user.firstname}</span>
                   </th>
                   <th>
-                    <FaTrash className='text-danger' />
+                    <Button variant='link' onClick={() => deleteHandler(pub._id)}>
+                      <FaTrash className='text-danger' />
+                    </Button>
                   </th>
                 </tr>
               ))}

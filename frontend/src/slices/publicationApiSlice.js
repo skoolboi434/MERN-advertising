@@ -33,6 +33,13 @@ export const publicationApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Publication']
     }),
+    deletePublication: builder.mutation({
+      query: publicationId => ({
+        url: `${Publications_URL}/${publicationId}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['Publication']
+    }),
 
     addPublicationNote: builder.mutation({
       query: ({ publicationId, ...noteData }) => ({
@@ -46,4 +53,4 @@ export const publicationApiSlice = apiSlice.injectEndpoints({
   })
 });
 
-export const { useGetPublicationsQuery, useGetSinglePublicationQuery, useCreatePublicationMutation, useUpdatePublicationMutation, useAddPublicationNoteMutation } = publicationApiSlice;
+export const { useGetPublicationsQuery, useGetSinglePublicationQuery, useCreatePublicationMutation, useUpdatePublicationMutation, useAddPublicationNoteMutation, useDeletePublicationMutation } = publicationApiSlice;

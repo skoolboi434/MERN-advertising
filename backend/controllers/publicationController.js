@@ -64,6 +64,21 @@ const updatePublication = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc Delete publication
+// @route DELETE /api/:id
+// @access Private
+
+const deletePublication = asyncHandler(async (req, res) => {
+  const publication = await Publication.findById(req.params.id);
+
+  if (publication) {
+    await publication.deleteOne({ _id: publication._id });
+    res.status(200).json({ message: 'Publication removed.' });
+  } else {
+    throw new Error('Resource not found');
+  }
+});
+
 // @desc Add publication note
 // @route POST /api/:id/notes
 // @access Private
@@ -84,4 +99,4 @@ const createPublicationNote = asyncHandler(async (req, res) => {
   res.status(201).json(publication);
 });
 
-export { getPublications, getPublicationById, createPublication, updatePublication, createPublicationNote };
+export { getPublications, getPublicationById, createPublication, updatePublication, createPublicationNote, deletePublication };
