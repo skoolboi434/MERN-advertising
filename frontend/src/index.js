@@ -11,6 +11,7 @@ import PublicationDashboard from './screens/PublicationDashboard';
 import AdvertisingDashboard from './screens/AdvertisingDashboard';
 import SinglePublication from './screens/SinglePublication';
 import LoginScreen from './screens/LoginScreen.jsx';
+import RegisterScreen from './screens/RegisterScreen.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route path='/publications' element={<PublicationDashboard />} />
       <Route path='/publications/:id' element={<SinglePublication />} />
       <Route path='/login' element={<LoginScreen />} />
+      <Route path='/register' element={<RegisterScreen />} />
     </Route>
   )
 );
