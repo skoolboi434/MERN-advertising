@@ -1,0 +1,234 @@
+
+> mern-advertising@1.0.0 server
+> nodemon backend/server.js
+
+(node:16540) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (3) from .env // tip: ⌘ enable debugging { debug: true }
+(node:42316) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+{ email: 'test@example.com', password: 'test123' }
+undefined
+undefined
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (3) from .env // tip: ⌘ override existing { override: true }
+(node:14408) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-00.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (3) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+(node:32704) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (3) from .env // tip: ⌘ suppress logs { quiet: true }
+(node:43884) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-01.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (3) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+(node:7380) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-00.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (3) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+(node:42732) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-01.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (3) from .env // tip: ⌘ override existing { override: true }
+(node:12752) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (3) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+(node:31312) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-00.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (3) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+(node:6484) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-00.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (3) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+(node:44316) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-01.xj141qq.mongodb.net
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌘ enable debugging { debug: true }
+(node:42224) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+(node:42184) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-01.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+(node:6412) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-00.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+(node:38764) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+(node:10212) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+(node:28628) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+(node:4712) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-01.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌘ override existing { override: true }
+(node:26760) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-01.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+(node:43132) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+(node:11344) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-00.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+(node:43684) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+(node:45040) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+(node:39932) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌘ suppress logs { quiet: true }
+(node:33172) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-01.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌘ enable debugging { debug: true }
+(node:11840) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-01.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+(node:15752) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-02.xj141qq.mongodb.net
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node backend/server.js`[39m
+◇ injected env (4) from .env // tip: ⌘ override existing { override: true }
+(node:40704) ExperimentalWarning: CommonJS module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\debug\src\node.js is loading ES Module C:\Users\Travis - MIDTC\Desktop\projects\mern-advertising\node_modules\supports-color\index.js using require().
+Support for loading ES Module in require() is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Server running on 5050
+MongoDB connected: ac-xoejgz8-shard-00-00.xj141qq.mongodb.net
