@@ -6,12 +6,10 @@ const userSchema = new mongoose.Schema(
   {
     publications: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Publication' }],
     firstname: {
-      type: String,
-      required: true
+      type: String
     },
     lastname: {
-      type: String,
-      required: true
+      type: String
     },
     username: {
       type: String,
@@ -23,12 +21,10 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
       unique: true
     },
     phone: {
-      type: String,
-      required: true
+      type: String
     },
     role: {
       type: String,
