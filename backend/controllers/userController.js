@@ -119,7 +119,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const updatedUser = await user.save();
 
     res.status(200).json({
-      _id: updateUser._id,
+      _id: updatedUser._id,
       firstname: updatedUser.firstname,
       lastname: updatedUser.lastname,
       email: updatedUser.email,
@@ -177,15 +177,14 @@ const updateUser = asyncHandler(async (req, res) => {
     const updatedUser = await user.save();
 
     res.status(200).json({
-      _id: updateUser._id,
-      firstname: updateUser.firstname,
-      lastname: updateUser.lastname,
-      email: updateUser.email,
-      phone: updateUser.phone,
-      role: updateUser.role,
-      status: updateUser.status,
-      status: updateUser.status,
-      isAdmin: updateUser.isAdmin
+      _id: updatedUser._id,
+      firstname: updatedUser.firstname,
+      lastname: updatedUser.lastname,
+      email: updatedUser.email,
+      phone: updatedUser.phone,
+      role: updatedUser.role,
+      status: updatedUser.status,
+      isAdmin: updatedUser.isAdmin
     });
   } else {
     res.status(404);
