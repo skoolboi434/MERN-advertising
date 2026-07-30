@@ -22,6 +22,7 @@ const router = createBrowserRouter(
       <Route path='/publications' element={<PublicationDashboard />} />
       <Route path='/publications/:id' element={<SinglePublication />} />
       <Route path='/advertisers' element={<AdvertisersDashboard />} />
+      <Route path='/advertisers/:id' element={<SingleAdvertiser />} />
       <Route path='/login' element={<LoginScreen />} />
       <Route path='/register' element={<RegisterScreen />} />
     </Route>

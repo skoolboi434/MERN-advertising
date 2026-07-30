@@ -16,7 +16,14 @@ const getAdvertisers = asyncHandler(async (req, res) => {
 // @access Private
 
 const getSingleAdvertiser = asyncHandler(async (req, res) => {
-  res.send('Single Advertiser');
+  const advertiser = await Advertiser.findById(req.params.id).populate('user', 'firstname lastname');
+
+  if (advertiser) {
+    return res.json(advertiser);
+  } else {
+    res.status(404);
+    throw new Error('Resource not found');
+  }
 });
 
 // @desc Create an advertiser
