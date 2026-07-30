@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Container, Col, Row, Form, Modal, Tab, Tabs } from 'react-bootstrap';
+import { Button, Container, Col, Row, Form, Modal, Tab, Tabs, Table } from 'react-bootstrap';
 import { useGetSingleAdvertiserQuery } from '../slices/advertiserApiSlice';
 import { Link } from 'react-router-dom';
 import { FaComment, FaPencilAlt, FaPlus } from 'react-icons/fa';
@@ -115,8 +115,34 @@ const SingleAdvertiser = () => {
             </>
           )}
         </Tab>
-        <Tab eventKey='history' title='History'>
-          Campaign History
+        <Tab eventKey='history' title='History' className='p-3'>
+          <Table bordered hover>
+            <thead>
+              <tr>
+                <th scope='col'>Campaign ID</th>
+                <th scope='col'>Name</th>
+                <th scope='col'>Date Ordered</th>
+                <th scope='col'>Start Date</th>
+                <th scope='col'>End Date</th>
+                <th scope='col'>Created By</th>
+                <th scope='col'>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#001</td>
+                <td>Sample Campaign</td>
+                <td>00/00/0000</td>
+                <td>00/00/0000</td>
+                <td>00/00/0000</td>
+                <td>Travis</td>
+                <td>$0.00</td>
+                <td>
+                  <span className='text-capitalize'></span>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
         </Tab>
         <Tab eventKey='activity' title='Activity'>
           Campaign Activity
