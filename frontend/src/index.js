@@ -14,6 +14,7 @@ import LoginScreen from './screens/LoginScreen.jsx';
 import RegisterScreen from './screens/RegisterScreen.jsx';
 import AdvertisersDashboard from './screens/AdvertisersDashboard.jsx';
 import SingleAdvertiser from './screens/SingleAdvertiser.jsx';
+import UserProfile from './screens/UserProfile.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path='/publications/:id' element={<SinglePublication />} />
       <Route path='/advertisers' element={<AdvertisersDashboard />} />
       <Route path='/advertisers/:id' element={<SingleAdvertiser />} />
+      <Route path='/users/profile/:id' element={<UserProfile />} />
       <Route path='/login' element={<LoginScreen />} />
       <Route path='/register' element={<RegisterScreen />} />
     </Route>

@@ -6,6 +6,7 @@ import { useGetPublicationsQuery } from '../slices/publicationApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import AdvertiserLookup from '../components/AdvertiserLookup';
+import ContainerCustom from '../components/ContainerCustom';
 
 const AdvertisingDashboard = () => {
   const { data: publications, isLoading, error, refetch } = useGetPublicationsQuery();
@@ -20,7 +21,7 @@ const AdvertisingDashboard = () => {
         <h3 className='heading'>Welcome - {userInfo.firstname}</h3>
       </div>
 
-      <div className='border border-dark rounded shadow p-3 mb-3'>
+      <ContainerCustom>
         <div className='border-bottom border-dark mb-5 w-50 pb-1'>
           <h3 className='mb-0'>Recently Create Publications</h3>
         </div>
@@ -62,7 +63,7 @@ const AdvertisingDashboard = () => {
             </Table>
           </>
         )}
-      </div>
+      </ContainerCustom>
 
       <Row>
         <Col md={12} lg={7}>
@@ -70,7 +71,7 @@ const AdvertisingDashboard = () => {
         </Col>
 
         <Col md={12} lg={5}>
-          <div className='border border-dark rounded shadow p-3'>
+          <ContainerCustom>
             <div className='border-bottom border-dark mb-3 w-75 pb-1 text-center mx-auto'>
               <h3 className='mb-0'>Quick Start</h3>
             </div>
@@ -83,7 +84,7 @@ const AdvertisingDashboard = () => {
                 Publications
               </Link>
             </div>
-          </div>
+          </ContainerCustom>
         </Col>
       </Row>
     </Container>

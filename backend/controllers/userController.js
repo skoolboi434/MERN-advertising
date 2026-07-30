@@ -138,7 +138,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @access Private
 
 const getUsers = asyncHandler(async (req, res) => {
-  res.send('All users');
+  const users = await User.find({});
+  res.status(200).json(users);
 });
 
 // @desc Get user by ID
@@ -146,7 +147,14 @@ const getUsers = asyncHandler(async (req, res) => {
 // @access Private
 
 const getUserById = asyncHandler(async (req, res) => {
-  res.send('Get user by Id');
+  const user = await User.findById(req.params.id).select('-password');
+
+  if (user) {
+    res.status(200).json(user);
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
 });
 
 // @desc Update user
@@ -154,7 +162,35 @@ const getUserById = asyncHandler(async (req, res) => {
 // @access Private
 
 const updateUser = asyncHandler(async (req, res) => {
-  res.send('Update user');
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.firstname = req.body.firstname || user.firstname;
+    user.lastname = req.body.lastname || user.lastname;
+    user.username = req.body.username || user.username;
+    user.email = req.body.email || user.email;
+    user.phone = req.body.phone || user.phone;
+    user.role = req.body.role || user.role;
+    user.status = req.body.status || user.status;
+    user.isAdmin = Boolean(req.body.isAdmin);
+
+    const updatedUser = await user.save();
+
+    res.status(200).json({
+      _id: updateUser._id,
+      firstname: updateUser.firstname,
+      lastname: updateUser.lastname,
+      email: updateUser.email,
+      phone: updateUser.phone,
+      role: updateUser.role,
+      status: updateUser.status,
+      status: updateUser.status,
+      isAdmin: updateUser.isAdmin
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
 });
 
 // @desc Delete users
@@ -162,7 +198,20 @@ const updateUser = asyncHandler(async (req, res) => {
 // @access Private
 
 const deleteUser = asyncHandler(async (req, res) => {
-  res.send('Delete user');
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    if (user.isAdmin) {
+      res.status(400);
+      throw new Error('Can not delete Admin User');
+    }
+
+    await User.deleteOne({ _id: user._id });
+    res.status(200).json({ message: 'User deleted successfully' });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
 });
 
 export { authUser, registerUser, logoutUser, getUserProfile, updateUser, getUsers, deleteUser, getUserById, updateUserProfile };

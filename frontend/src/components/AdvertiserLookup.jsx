@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGetAdvertisersQuery } from '../slices/advertiserApiSlice';
+import ContainerCustom from './ContainerCustom';
 
 const AdvertiserLookup = () => {
   const { data: advertisers } = useGetAdvertisersQuery();
@@ -10,7 +11,7 @@ const AdvertiserLookup = () => {
   const filteredAdvertisers = searchTerm.trim() === '' ? [] : (advertisers || []).filter(adv => adv.businessname.toLowerCase().includes(searchTerm.toLowerCase()) || `${adv.firstname} ${adv.lastname}`.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div className='border border-dark rounded shadow p-3'>
+    <ContainerCustom>
       <div className='border-bottom border-dark mb-5 pb-1'>
         <h3 className='mb-0'>Advertiser Lookup</h3>
       </div>
@@ -40,7 +41,7 @@ const AdvertiserLookup = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ContainerCustom>
   );
 };
 
