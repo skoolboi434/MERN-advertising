@@ -53,4 +53,21 @@ const createAdvertiser = asyncHandler(async (req, res) => {
   res.status(201).json(createdAdvertiser);
 });
 
-export { getAdvertisers, getSingleAdvertiser, createAdvertiser };
+// @desc Update Advertiser
+// @route PUT /api/:id
+// @access Private
+
+const updateAdvertiser = asyncHandler(async (req, res) => {
+  const { firstname, lastname, email, phone, businessname, accountType, address, city, state, zipcode, billingEmail, contact, status } = req.body;
+
+  const advertiser = await Advertiser.findById(req.params.id);
+
+  if (advertiser) {
+    ((advertiser.firstname = firstname), (advertiser.lastname = lastname), (advertiser.email = email), (advertiser.phone = phone), (advertiser.businessname = businessname), (advertiser.accountType = accountType), (advertiser.address = address), (advertiser.city = city), (advertiser.state = state), (advertiser.zipcode = zipcode), (advertiser.billingEmail = billingEmail), (advertiser.contact = contact), (advertiser.status = status));
+
+    const updateAdvertiser = await advertiser.save();
+    res.json(updateAdvertiser);
+  }
+});
+
+export { getAdvertisers, getSingleAdvertiser, createAdvertiser, updateAdvertiser };
