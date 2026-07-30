@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useGetPublicationsQuery } from '../slices/publicationApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import AdvertiserLookup from '../components/AdvertiserLookup';
 
 const AdvertisingDashboard = () => {
   const { data: publications, isLoading, error, refetch } = useGetPublicationsQuery();
@@ -65,30 +66,7 @@ const AdvertisingDashboard = () => {
 
       <Row>
         <Col md={12} lg={7}>
-          <div className='border border-dark rounded shadow p-3'>
-            <div className='border-bottom border-dark mb-5 pb-1'>
-              <h3 className='mb-0'>Advertiser Lookup</h3>
-            </div>
-
-            <div className='actions-container text-center mb-3'>
-              <p>
-                Use the search bar below to find existing advertisers in
-                <br />
-                the system. Results will appear below
-              </p>
-              <div className='has-search w-75 mx-auto'>
-                <input type='text' id='dashboard-advertiser-search' className='form-control' placeholder='Search' />
-              </div>
-              <div id='advertiser-results-heading' className='my-3'>
-                <span className='d-block w-75 mx-auto text-start'>
-                  <strong>Results</strong>
-                </span>
-              </div>
-              <div className='w-75 mx-auto mt-2'>
-                <div id='dashboard-advertiser-results' className='list-group'></div>
-              </div>
-            </div>
-          </div>
+          <AdvertiserLookup />
         </Col>
 
         <Col md={12} lg={5}>
