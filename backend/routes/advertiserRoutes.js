@@ -1,10 +1,10 @@
 import express from 'express';
 const router = express.Router();
-import { getAdvertisers, getSingleAdvertiser, createAdvertiser, updateAdvertiser } from '../controllers/advertisersController.js';
+import { getAdvertisers, getSingleAdvertiser, createAdvertiser, updateAdvertiser, deleteAdvertiser } from '../controllers/advertisersController.js';
 import { protect } from '../middleware/authMiddleware.js';
 
 router.route('/').get(getAdvertisers).post(protect, createAdvertiser);
 
-router.route('/:id').get(getSingleAdvertiser).post(protect, createAdvertiser).put(protect, updateAdvertiser);
+router.route('/:id').get(getSingleAdvertiser).post(protect, createAdvertiser).put(protect, updateAdvertiser).delete(protect, deleteAdvertiser);
 
 export default router;

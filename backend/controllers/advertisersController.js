@@ -70,4 +70,19 @@ const updateAdvertiser = asyncHandler(async (req, res) => {
   }
 });
 
-export { getAdvertisers, getSingleAdvertiser, createAdvertiser, updateAdvertiser };
+// @desc Delete advertiser
+// @route DELETE /api/:id
+// @access Private
+
+const deleteAdvertiser = asyncHandler(async (req, res) => {
+  const advertiser = await Advertiser.findById(req.params.id);
+
+  if (advertiser) {
+    await advertiser.deleteOne({ _id: advertiser._id });
+    res.status(200).json({ message: 'Advertiser removed.' });
+  } else {
+    throw new Error('Resource not found');
+  }
+});
+
+export { getAdvertisers, getSingleAdvertiser, createAdvertiser, updateAdvertiser, deleteAdvertiser };

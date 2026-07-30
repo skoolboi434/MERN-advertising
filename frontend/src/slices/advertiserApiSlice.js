@@ -30,8 +30,15 @@ export const advertiserApiSlice = apiSlice.injectEndpoints({
         body: data
       }),
       invalidatesTags: ['Advertiser']
+    }),
+    deleteAdvertiser: builder.mutation({
+      query: advertiserId => ({
+        url: `${Advertisers_URL}/${advertiserId}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['Advertiser']
     })
   })
 });
 
-export const { useGetAdvertisersQuery, useGetSingleAdvertiserQuery, useCreateAdvertiserMutation, useUpdateAdvertiserMutation } = advertiserApiSlice;
+export const { useGetAdvertisersQuery, useGetSingleAdvertiserQuery, useCreateAdvertiserMutation, useUpdateAdvertiserMutation, useDeleteAdvertiserMutation } = advertiserApiSlice;

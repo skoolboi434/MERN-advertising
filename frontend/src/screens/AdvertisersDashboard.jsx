@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Table, Toast, Modal, Form, Row, Col } from 'react-bootstrap';
-import { useCreateAdvertiserMutation, useGetAdvertisersQuery } from '../slices/advertiserApiSlice';
+import { useCreateAdvertiserMutation, useGetAdvertisersQuery, useDeleteAdvertiserMutation } from '../slices/advertiserApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { toast } from 'react-toastify';
@@ -57,6 +57,21 @@ const AdvertisersDashboard = () => {
       refetch();
     } catch (error) {
       toast.error(error?.data?.message || error.error);
+    }
+  };
+
+  // Delete Advertiser
+  const [deleteAdvertiser, { isLoading: LoadingDelete }] = useDeleteAdvertiserMutation();
+
+  const deleteHandler = async id => {
+    if (window.confirm('Are you sure you want to delete this Advertiser?')) {
+      try {
+        await deleteAdvertiser(id).unwrap();
+        toast.success('Advertiser deleted.');
+        refetch();
+      } catch (error) {
+        toast.error(error?.data?.message || error.message);
+      }
     }
   };
 
@@ -194,7 +209,7 @@ const AdvertisersDashboard = () => {
                   <span className='text-capitalize'>{advertiser.user.firstname}</span>
                 </td>
                 <td>
-                  <Button variant='link'>
+                  <Button variant='link' onClick={() => deleteHandler(advertiser._id)}>
                     <FaTrash className='text-danger' />
                   </Button>
                 </td>
