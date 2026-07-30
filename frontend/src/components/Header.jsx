@@ -51,6 +51,9 @@ const Header = () => {
                 <FaHome /> Dashboard
               </Nav.Link>
             </LinkContainer>
+            <LinkContainer to='/advertisers'>
+              <Nav.Link>Advertisers</Nav.Link>
+            </LinkContainer>
             <LinkContainer to='/publications'>
               <Nav.Link>Publications</Nav.Link>
             </LinkContainer>
