@@ -66,8 +66,7 @@ const advertiserSchema = new mongoose.Schema(
     },
     billingEmail: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
     contact: {
       type: String

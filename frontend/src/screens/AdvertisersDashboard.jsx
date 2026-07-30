@@ -31,7 +31,7 @@ const AdvertisersDashboard = () => {
   const [showModal, setShowModal] = useState(false);
 
   const openNewAdvertiserModal = () => {
-    //setFormData(initialFormState);
+    setFormData(initialFormState);
     setShowModal(true);
   };
 
