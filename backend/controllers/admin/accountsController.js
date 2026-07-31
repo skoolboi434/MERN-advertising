@@ -38,6 +38,23 @@ const importAccountTypes = asyncHandler(async (req, res) => {
   res.status(201).json(result);
 });
 
+// @desc Update Account type
+// @route PUT /api/admin/accounts/:id
+// @access Private
+
+const updateAccountType = asyncHandler(async (req, res) => {
+  const { name, code, status } = req.body;
+
+  const accountType = await AccountType.findById(req.params.id);
+
+  if (accountType) {
+    ((accountType.name = name), (accountType.code = code), (accountType.status = status));
+
+    const updateAccountType = await accountType.save();
+    res.json(updateAccountType);
+  }
+});
+
 // @desc Delete account type
 // @route DELETE /api/:id
 // @access Private
@@ -53,4 +70,4 @@ const deleteAccountType = asyncHandler(async (req, res) => {
   }
 });
 
-export { getAccountTypes, createAccountType, importAccountTypes, deleteAccountType };
+export { getAccountTypes, createAccountType, importAccountTypes, deleteAccountType, updateAccountType };

@@ -26,6 +26,14 @@ export const accountTypeApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['AccountType']
     }),
+    updateAccountType: builder.mutation({
+      query: accountType => ({
+        url: `${ADMIN_URL}/accounts/${accountType._id}`,
+        method: 'PUT',
+        body: accountType
+      }),
+      invalidatesTags: ['AccountType']
+    }),
     deleteAccountType: builder.mutation({
       query: accountTypeId => ({
         url: `${ADMIN_URL}/accounts/${accountTypeId}`,
@@ -36,4 +44,4 @@ export const accountTypeApiSlice = apiSlice.injectEndpoints({
   })
 });
 
-export const { useGetAccountTypesQuery, useCreateAccountTypeMutation, useImportAccountTypeMutation, useDeleteAccountTypeMutation } = accountTypeApiSlice;
+export const { useGetAccountTypesQuery, useCreateAccountTypeMutation, useImportAccountTypeMutation, useDeleteAccountTypeMutation, useUpdateAccountTypeMutation } = accountTypeApiSlice;

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Table, Toast, Modal, Form, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useGetUsersQuery } from '../../../slices/usersApiSlice';
-import { useCreateAccountTypeMutation, useGetAccountTypesQuery, useImportAccountTypeMutation, useDeleteAccountTypeMutation } from '../../../slices/admin/accountApiSlice';
+import { useCreateAccountTypeMutation, useGetAccountTypesQuery, useImportAccountTypeMutation, useDeleteAccountTypeMutation, useUpdateAccountTypeMutation } from '../../../slices/admin/accountApiSlice';
 import Loader from '../../../components/Loader';
 import Message from '../../../components/Message';
 import { toast } from 'react-toastify';
 import { FaTrash } from 'react-icons/fa';
 
-const initialFormState = {
+const initialAccountTypeFormState = {
   name: '',
   code: ''
 };
@@ -24,7 +24,7 @@ const AccountsDashboard = () => {
   const [showModal, setShowModal] = useState(false);
 
   const openNewAccountTypeModal = () => {
-    //setFormData(initialFormState);
+    //setFormData(initialAccountTypeFormState);
     setShowModal(true);
   };
 
@@ -32,7 +32,7 @@ const AccountsDashboard = () => {
 
   const [createAccountType, { isLoading: loadingCreate }] = useCreateAccountTypeMutation();
   const [importAccountType, { isLoading: loadingImport }] = useImportAccountTypeMutation();
-  const [formData, setFormData] = useState(initialFormState);
+  const [formData, setFormData] = useState(initialAccountTypeFormState);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -48,7 +48,7 @@ const AccountsDashboard = () => {
       await createAccountType(payload).unwrap();
       toast.success('Account Type created');
       setShowModal(false);
-      setFormData(initialFormState);
+      setFormData(initialAccountTypeFormState);
       refetchAccountTypes();
     } catch (error) {
       toast.error(error?.data?.message || error.error);
@@ -76,6 +76,17 @@ const AccountsDashboard = () => {
     e.target.value = '';
   };
 
+  // Edit Account Type
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [editAccountTypeFormData, setEditAccountTypeFormData] = useState(initialAccountTypeFormState);
+
+  const openEditAccountTypeModal = type => {
+    setEditingId(type._id);
+    setEditAccountTypeFormData({ name: type.name, code: type.code, status: type.status });
+    setShowEditModal(true);
+  };
+
   // Delete Account type handler
   const [deleteAccountType] = useDeleteAccountTypeMutation();
 
@@ -83,6 +94,31 @@ const AccountsDashboard = () => {
     try {
       await deleteAccountType(id).unwrap();
       toast.success('Account Type removed');
+      refetchAccountTypes();
+    } catch (error) {
+      toast.error(error?.data?.message || error.error);
+    }
+  };
+
+  const handleEditChange = e => {
+    const { name, value } = e.target;
+    setEditAccountTypeFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const [updateAccountType, { isLoading: loadingAccountTypeUpdate }] = useUpdateAccountTypeMutation();
+
+  const editAccountTypeSubmitHandler = async e => {
+    e.preventDefault();
+
+    const updatedAccountType = {
+      _id: editingId,
+      ...editAccountTypeFormData
+    };
+
+    try {
+      await updateAccountType(updatedAccountType).unwrap();
+      toast.success('Account Type updated');
+      setShowEditModal(false);
       refetchAccountTypes();
     } catch (error) {
       toast.error(error?.data?.message || error.error);
@@ -220,6 +256,9 @@ const AccountsDashboard = () => {
                       <span className='text-capitalize'>{type.status}</span>
                     </td>
                     <td>
+                      <Button variant='link' onClick={() => openEditAccountTypeModal(type)}>
+                        Edit
+                      </Button>
                       <Button variant='text-link' onClick={() => deleteHandler(type._id)}>
                         <FaTrash className='text-danger' />
                       </Button>
@@ -229,6 +268,35 @@ const AccountsDashboard = () => {
               </tbody>
             </Table>
           )}
+
+          <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+            <Modal.Body>
+              <Modal.Header>
+                <Modal.Title>New Account Type</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form onSubmit={editAccountTypeSubmitHandler}>
+                  <Form.Group className='mb-3'>
+                    <Form.Label>Account Type Name:</Form.Label>
+                    <Form.Control name='name' value={editAccountTypeFormData.name} onChange={handleEditChange} />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Account Type Code</Form.Label>
+                    <Form.Control name='code' value={editAccountTypeFormData.code} onChange={handleEditChange} />
+                  </Form.Group>
+                  {/* ...submit button... */}
+                  <Modal.Footer className='justify-content-lg-between d-flex'>
+                    <Button variant='secondary' onClick={() => setShowEditModal(false)}>
+                      Cancel
+                    </Button>
+                    <Button variant='primary' type='submit'>
+                      Update Account Type
+                    </Button>
+                  </Modal.Footer>
+                </Form>
+              </Modal.Body>
+            </Modal.Body>
+          </Modal>
         </Tab>
         <Tab eventKey='userRoles' title='User Roles' className='p-3'></Tab>
       </Tabs>
