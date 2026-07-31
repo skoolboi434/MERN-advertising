@@ -18,7 +18,7 @@ const AccountsDashboard = () => {
   const { data: users, isLoading, error, refetch } = useGetUsersQuery();
 
   // Get all Account Types
-  const { data: accountTypes } = useGetAccountTypesQuery();
+  const { data: accountTypes, refetch: refetchAccountTypes } = useGetAccountTypesQuery();
 
   // Show New AccountType Modal
   const [showModal, setShowModal] = useState(false);
@@ -47,7 +47,7 @@ const AccountsDashboard = () => {
       await createAccountType(payload).unwrap();
       toast.success('Account Type created');
       setShowModal(false);
-      refetch();
+      refetchAccountTypes();
     } catch (error) {
       toast.error(error?.data?.message || error.error);
     }
@@ -174,9 +174,7 @@ const AccountsDashboard = () => {
                     <td>#{type._id}</td>
                     <td>{type.name}</td>
                     <td>{type.code}</td>
-                    <td>
-                      <td>{new Date(type.createdAt).toLocaleDateString()}</td>
-                    </td>
+                    <td>{new Date(type.createdAt).toLocaleDateString()}</td>
                     <td>
                       <span className='text-capitalize'>{type.status}</span>
                     </td>
