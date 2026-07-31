@@ -18,7 +18,7 @@ const AccountsDashboard = () => {
   const { data: users, isLoading, error, refetch } = useGetUsersQuery();
 
   // Get all Account Types
-  const { data: accountTypes, refetch: refetchAccountTypes } = useGetAccountTypesQuery();
+  const { data: accountTypes, isLoading: loadingAccountTypes, error: accountTypesError, refetch: refetchAccountTypes } = useGetAccountTypesQuery();
 
   // Show New AccountType Modal
   const [showModal, setShowModal] = useState(false);
@@ -47,6 +47,7 @@ const AccountsDashboard = () => {
       await createAccountType(payload).unwrap();
       toast.success('Account Type created');
       setShowModal(false);
+      setFormData(initialFormState);
       refetchAccountTypes();
     } catch (error) {
       toast.error(error?.data?.message || error.error);
@@ -152,10 +153,10 @@ const AccountsDashboard = () => {
 
           {/* End create account type modal */}
 
-          {isLoading ? (
+          {loadingAccountTypes ? (
             <Loader />
-          ) : error ? (
-            <Message variant='danger'>{error?.data?.message || error.error}</Message>
+          ) : accountTypesError ? (
+            <Message variant='danger'>{accountTypesError?.data?.message || accountTypesError.error}</Message>
           ) : (
             <Table hover bordered>
               <thead>
