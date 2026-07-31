@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Table, Toast, Modal, Form, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useGetUsersQuery } from '../../../slices/usersApiSlice';
-import { useCreateAccountTypeMutation, useGetAccountTypesQuery, useImportAccountTypeMutation } from '../../../slices/admin/accountApiSlice';
+import { useCreateAccountTypeMutation, useGetAccountTypesQuery, useImportAccountTypeMutation, useDeleteAccountTypeMutation } from '../../../slices/admin/accountApiSlice';
 import Loader from '../../../components/Loader';
 import Message from '../../../components/Message';
 import { toast } from 'react-toastify';
@@ -74,6 +74,19 @@ const AccountsDashboard = () => {
     reader.readAsText(file);
 
     e.target.value = '';
+  };
+
+  // Delete Account type handler
+  const [deleteAccountType] = useDeleteAccountTypeMutation();
+
+  const deleteHandler = async id => {
+    try {
+      await deleteAccountType(id).unwrap();
+      toast.success('Account Type removed');
+      refetchAccountTypes();
+    } catch (error) {
+      toast.error(error?.data?.message || error.error);
+    }
   };
 
   return (
@@ -207,7 +220,7 @@ const AccountsDashboard = () => {
                       <span className='text-capitalize'>{type.status}</span>
                     </td>
                     <td>
-                      <Button variant='text-link'>
+                      <Button variant='text-link' onClick={() => deleteHandler(type._id)}>
                         <FaTrash className='text-danger' />
                       </Button>
                     </td>

@@ -38,4 +38,19 @@ const importAccountTypes = asyncHandler(async (req, res) => {
   res.status(201).json(result);
 });
 
-export { getAccountTypes, createAccountType, importAccountTypes };
+// @desc Delete account type
+// @route DELETE /api/:id
+// @access Private
+
+const deleteAccountType = asyncHandler(async (req, res) => {
+  const accountType = await AccountType.findById(req.params.id);
+
+  if (accountType) {
+    await AccountType.deleteOne({ _id: accountType._id });
+    res.status(200).json({ message: 'Account Type removed.' });
+  } else {
+    throw new Error('Resource not found');
+  }
+});
+
+export { getAccountTypes, createAccountType, importAccountTypes, deleteAccountType };

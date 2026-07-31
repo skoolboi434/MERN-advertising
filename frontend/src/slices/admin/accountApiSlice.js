@@ -25,8 +25,15 @@ export const accountTypeApiSlice = apiSlice.injectEndpoints({
         body: data
       }),
       invalidatesTags: ['AccountType']
+    }),
+    deleteAccountType: builder.mutation({
+      query: accountTypeId => ({
+        url: `${ADMIN_URL}/accounts/${accountTypeId}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['AccountType']
     })
   })
 });
 
-export const { useGetAccountTypesQuery, useCreateAccountTypeMutation, useImportAccountTypeMutation } = accountTypeApiSlice;
+export const { useGetAccountTypesQuery, useCreateAccountTypeMutation, useImportAccountTypeMutation, useDeleteAccountTypeMutation } = accountTypeApiSlice;
