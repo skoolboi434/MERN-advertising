@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { FaGear } from 'react-icons/fa6';
 
 const Header = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -56,6 +57,11 @@ const Header = () => {
             </LinkContainer>
             <LinkContainer to='/publications'>
               <Nav.Link>Publications</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to='/admin'>
+              <Nav.Link>
+                <FaGear /> Admin
+              </Nav.Link>
             </LinkContainer>
             {/* <Nav.Link href='/ad-types'>Ad Types</Nav.Link>
             <Nav.Link href='/pricing'>Pricing</Nav.Link>

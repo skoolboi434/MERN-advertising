@@ -6,6 +6,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import publicationRoutes from './routes/publicationRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import advertiserRoutes from './routes/advertiserRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 dotenv.config();
 
 const port = process.env.PORT || 5050;
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 app.use('/api/publications', publicationRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/advertisers', advertiserRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
