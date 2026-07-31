@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Table, Toast, Modal, Form, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useGetUsersQuery } from '../../../slices/usersApiSlice';
-import { useCreateAccountTypeMutation, useGetAccountTypesQuery } from '../../../slices/admin/accountApiSlice';
+import { useCreateAccountTypeMutation, useGetAccountTypesQuery, useImportAccountTypeMutation } from '../../../slices/admin/accountApiSlice';
 import Loader from '../../../components/Loader';
 import Message from '../../../components/Message';
 import { toast } from 'react-toastify';
@@ -31,6 +31,7 @@ const AccountsDashboard = () => {
   // End Open New Account Type Modal
 
   const [createAccountType, { isLoading: loadingCreate }] = useCreateAccountTypeMutation();
+  const [importAccountType, { isLoading: loadingImport }] = useImportAccountTypeMutation();
   const [formData, setFormData] = useState(initialFormState);
 
   const handleChange = e => {
@@ -52,6 +53,27 @@ const AccountsDashboard = () => {
     } catch (error) {
       toast.error(error?.data?.message || error.error);
     }
+  };
+
+  // Account type JSON file upload
+  const handleFileChange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async evt => {
+      try {
+        const parsed = JSON.parse(evt.target.result);
+        await importAccountType(parsed).unwrap();
+        toast.success('Account Types imported');
+        refetchAccountTypes();
+      } catch (error) {
+        toast.error(error?.data?.message || error?.error || 'Invalid JSON file');
+      }
+    };
+    reader.readAsText(file);
+
+    e.target.value = '';
   };
 
   return (
@@ -115,10 +137,15 @@ const AccountsDashboard = () => {
         </Tab>
 
         <Tab eventKey='accountTypes' title='Account Types' className='p-3'>
-          <div className='action-container mb-3'>
+          <div className='action-container mb-3 d-flex justify-content-lg-between align-items-lg-center'>
             <Button variant='primary' onClick={openNewAccountTypeModal}>
               Create New Account Type
             </Button>
+
+            <div className='bulk-import'>
+              <span className='d-block mb-1'>Account Type JSON Import</span>
+              <input type='file' accept='json' onChange={handleFileChange} disabled={loadingImport} />
+            </div>
           </div>
 
           {/* Create new account type modal */}
@@ -178,6 +205,11 @@ const AccountsDashboard = () => {
                     <td>{new Date(type.createdAt).toLocaleDateString()}</td>
                     <td>
                       <span className='text-capitalize'>{type.status}</span>
+                    </td>
+                    <td>
+                      <Button variant='text-link'>
+                        <FaTrash className='text-danger' />
+                      </Button>
                     </td>
                   </tr>
                 ))}

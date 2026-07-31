@@ -1,0 +1,10 @@
+[
+  { "code": "AGY", "name": "Agency" },
+  { "code": "RSL", "name": "Reseller" },
+  { "code": "ENT", "name": "Enterprise" },
+  { "code": "GOV", "name": "Government" },
+  { "code": "NP", "name": "Non-Profit" },
+  { "code": "EDU", "name": "Education" },
+  { "code": "FRN", "name": "Franchise" },
+  { "code": "STR", "name": "Startup" }
+]

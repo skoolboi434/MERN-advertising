@@ -28,4 +28,14 @@ const createAccountType = asyncHandler(async (req, res) => {
   res.status(201).json(createdAccountType);
 });
 
-export { getAccountTypes, createAccountType };
+// @desc Import Account types from JSON
+// @route GET /api/admin/accounts/import
+// @access Private
+
+const importAccountTypes = asyncHandler(async (req, res) => {
+  const records = req.body.map(r => ({ ...r, user: req.user._id }));
+  const result = await AccountType.insertMany(records, { ordered: false });
+  res.status(201).json(result);
+});
+
+export { getAccountTypes, createAccountType, importAccountTypes };

@@ -17,8 +17,16 @@ export const accountTypeApiSlice = apiSlice.injectEndpoints({
         body: data
       }),
       invalidatesTags: ['AccountType']
+    }),
+    importAccountType: builder.mutation({
+      query: data => ({
+        url: `${ADMIN_URL}/accounts/import`,
+        method: 'POST',
+        body: data
+      }),
+      invalidatesTags: ['AccountType']
     })
   })
 });
 
-export const { useGetAccountTypesQuery, useCreateAccountTypeMutation } = accountTypeApiSlice;
+export const { useGetAccountTypesQuery, useCreateAccountTypeMutation, useImportAccountTypeMutation } = accountTypeApiSlice;
