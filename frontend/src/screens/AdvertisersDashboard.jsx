@@ -5,6 +5,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { toast } from 'react-toastify';
 import { FaTrash } from 'react-icons/fa';
+import { useGetAccountTypesQuery } from '../slices/admin/accountApiSlice';
 
 import { Link } from 'react-router-dom';
 
@@ -26,6 +27,9 @@ const initialFormState = {
 const AdvertisersDashboard = () => {
   // Get all Advertisers
   const { data: advertisers, isLoading, error, refetch } = useGetAdvertisersQuery();
+
+  // Get all Account Types
+  const { data: accountTypes, isLoading: loadingAccountTypes, error: accountTypesError } = useGetAccountTypesQuery();
 
   // Show New Advertiser Modal
   const [showModal, setShowModal] = useState(false);
@@ -130,7 +134,11 @@ const AdvertisersDashboard = () => {
                   <Form.Label>Account Type:</Form.Label>
                   <Form.Select type='select' name='accountType' value={formData.accountType} onChange={handleChange}>
                     <option value=''>Select Account Type</option>
-                    <option value='retail'>Retail</option>
+                    {accountTypes?.map(type => (
+                      <option key={type._id} value={type.name}>
+                        {type.name}
+                      </option>
+                    ))}
                   </Form.Select>
                 </Form.Group>
 
