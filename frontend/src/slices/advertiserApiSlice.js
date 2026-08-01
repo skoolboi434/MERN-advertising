@@ -1,4 +1,4 @@
-import { Publications_URL, Advertisers_URL } from '../constants';
+import { Advertisers_URL } from '../constants';
 import { apiSlice } from './apiSlice';
 
 export const advertiserApiSlice = apiSlice.injectEndpoints({

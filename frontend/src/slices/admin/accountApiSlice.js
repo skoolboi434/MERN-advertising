@@ -40,8 +40,24 @@ export const accountTypeApiSlice = apiSlice.injectEndpoints({
         method: 'DELETE'
       }),
       invalidatesTags: ['AccountType']
+    }),
+    // User Roles
+    getUserRoles: builder.query({
+      query: () => ({
+        url: `${ADMIN_URL}/roles`
+      }),
+      keepUnusedDataFor: 5,
+      providesTags: ['UserRole']
+    }),
+    createUserRole: builder.mutation({
+      query: data => ({
+        url: `${ADMIN_URL}/roles`,
+        method: 'POST',
+        body: data
+      }),
+      invalidatesTags: ['UserRole']
     })
   })
 });
 
-export const { useGetAccountTypesQuery, useCreateAccountTypeMutation, useImportAccountTypeMutation, useDeleteAccountTypeMutation, useUpdateAccountTypeMutation } = accountTypeApiSlice;
+export const { useGetAccountTypesQuery, useCreateAccountTypeMutation, useImportAccountTypeMutation, useDeleteAccountTypeMutation, useUpdateAccountTypeMutation, useCreateUserRoleMutation, useGetUserRolesQuery } = accountTypeApiSlice;

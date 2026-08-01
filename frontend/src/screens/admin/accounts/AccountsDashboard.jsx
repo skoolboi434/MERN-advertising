@@ -2,13 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Table, Toast, Modal, Form, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useGetUsersQuery } from '../../../slices/usersApiSlice';
-import { useCreateAccountTypeMutation, useGetAccountTypesQuery, useImportAccountTypeMutation, useDeleteAccountTypeMutation, useUpdateAccountTypeMutation } from '../../../slices/admin/accountApiSlice';
+import { useCreateAccountTypeMutation, useGetAccountTypesQuery, useImportAccountTypeMutation, useDeleteAccountTypeMutation, useUpdateAccountTypeMutation, useCreateUserRoleMutation, useGetUserRolesQuery } from '../../../slices/admin/accountApiSlice';
 import Loader from '../../../components/Loader';
 import Message from '../../../components/Message';
 import { toast } from 'react-toastify';
 import { FaTrash } from 'react-icons/fa';
+import { FaPencilAlt } from 'react-icons/fa';
 
 const initialAccountTypeFormState = {
+  name: '',
+  code: ''
+};
+
+const initialUserRoleFormState = {
   name: '',
   code: ''
 };
@@ -20,6 +26,9 @@ const AccountsDashboard = () => {
   // Get all Account Types
   const { data: accountTypes, isLoading: loadingAccountTypes, error: accountTypesError, refetch: refetchAccountTypes } = useGetAccountTypesQuery();
 
+  // Get all User Roles
+  const { data: userRoles, isLoading: loadingUserRoles, error: userRolesError, refetch: refetchUserRoles } = useGetUserRolesQuery();
+
   // Show New AccountType Modal
   const [showModal, setShowModal] = useState(false);
 
@@ -29,6 +38,8 @@ const AccountsDashboard = () => {
   };
 
   // End Open New Account Type Modal
+
+  // Create new Account Type
 
   const [createAccountType, { isLoading: loadingCreate }] = useCreateAccountTypeMutation();
   const [importAccountType, { isLoading: loadingImport }] = useImportAccountTypeMutation();
@@ -76,6 +87,8 @@ const AccountsDashboard = () => {
     e.target.value = '';
   };
 
+  // End Create new account type
+
   // Edit Account Type
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -115,15 +128,55 @@ const AccountsDashboard = () => {
       ...editAccountTypeFormData
     };
 
-    try {
-      await updateAccountType(updatedAccountType).unwrap();
+    const result = await updateAccountType(updatedAccountType);
+
+    if (result.error) {
+      toast.error(result.error?.data?.message || result.error.error);
+    } else {
       toast.success('Account Type updated');
       setShowEditModal(false);
       refetchAccountTypes();
+    }
+  };
+
+  // End delete account type
+
+  // Show New User Role Modal
+  const [showUserRoleModal, setShowUserRoleModal] = useState(false);
+
+  const openNewUserRoleModal = () => {
+    setShowUserRoleModal(true);
+  };
+
+  const handleNewUserRoleChange = e => {
+    const { name, value } = e.target;
+    setUserRoleFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // End Open New User Role Modal
+
+  // Create new user role
+  const [createUserRole, { isLoading: loadingCreateUserRole }] = useCreateUserRoleMutation();
+
+  const [userRoleFormData, setUserRoleFormData] = useState(initialUserRoleFormState);
+
+  const submitNewUserRoleHandler = async e => {
+    e.preventDefault();
+    try {
+      const payload = {
+        ...userRoleFormData
+      };
+      await createUserRole(payload).unwrap();
+      toast.success('User Role created');
+      setShowUserRoleModal(false);
+      setUserRoleFormData(initialUserRoleFormState);
+      refetchUserRoles();
     } catch (error) {
       toast.error(error?.data?.message || error.error);
     }
   };
+
+  // End Create New User Roll
 
   return (
     <Container>
@@ -161,7 +214,7 @@ const AccountsDashboard = () => {
               </thead>
               <tbody>
                 {users.map(user => (
-                  <tr>
+                  <tr key={user._id}>
                     <td>#{user._id}</td>
                     <td>
                       {user.firstname} {user.lastname}
@@ -298,7 +351,79 @@ const AccountsDashboard = () => {
             </Modal.Body>
           </Modal>
         </Tab>
-        <Tab eventKey='userRoles' title='User Roles' className='p-3'></Tab>
+        <Tab eventKey='userRoles' title='User Roles' className='p-3'>
+          <div className='action-container mb-3 d-flex justify-content-lg-between align-items-lg-center'>
+            <Button variant='primary' onClick={openNewUserRoleModal}>
+              Create New User Role
+            </Button>
+          </div>
+
+          <Modal show={showUserRoleModal} onHide={() => setShowUserRoleModal(false)}>
+            <Modal.Header>
+              <Modal.Title>New User Role</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form onSubmit={submitNewUserRoleHandler}>
+                <Form.Group className='mb-3'>
+                  <Form.Label>Role Name:</Form.Label>
+                  <Form.Control type='text' name='name' value={userRoleFormData.name} onChange={handleNewUserRoleChange} required />
+                </Form.Group>
+
+                <Form.Group>
+                  <Form.Label>Code:</Form.Label>
+                  <Form.Control type='text' name='code' value={userRoleFormData.code} onChange={handleNewUserRoleChange} required />
+                </Form.Group>
+
+                <Modal.Footer className='justify-content-lg-between d-flex'>
+                  <Button variant='secondary' onClick={() => setShowUserRoleModal(false)}>
+                    Cancel
+                  </Button>
+                  <Button variant='primary' type='submit'>
+                    Create User Role
+                  </Button>
+                </Modal.Footer>
+              </Form>
+            </Modal.Body>
+          </Modal>
+
+          {loadingCreateUserRole ? (
+            <Loader />
+          ) : userRolesError ? (
+            <Message variant='danger'>{userRolesError?.data?.message || userRolesError.error}</Message>
+          ) : (
+            <Table hover bordered>
+              <thead>
+                <tr>
+                  <th scope='col'>Role ID</th>
+                  <th scope='col'>Role</th>
+                  <th scope='col'>Role Code</th>
+                  <th scope='col'>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {userRoles.map(role => (
+                  <tr key={role._id}>
+                    <td>#{role._id}</td>
+                    <td>{role.name}</td>
+                    <td>{role.code}</td>
+                    <td>
+                      <span className='text-capitalize'>{role.status}</span>
+                    </td>
+                    <td>
+                      <Button variant='link'>
+                        <FaPencilAlt />
+                      </Button>
+                      <Button variant='text-link'>
+                        <FaTrash className='text-danger' />
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
+        </Tab>
       </Tabs>
     </Container>
   );
