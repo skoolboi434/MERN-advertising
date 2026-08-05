@@ -386,7 +386,7 @@ const AccountsDashboard = () => {
             </Modal.Body>
           </Modal>
 
-          {loadingCreateUserRole ? (
+          {loadingUserRoles ? (
             <Loader />
           ) : userRolesError ? (
             <Message variant='danger'>{userRolesError?.data?.message || userRolesError.error}</Message>

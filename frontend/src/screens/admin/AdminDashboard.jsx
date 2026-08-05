@@ -28,6 +28,17 @@ const AdminDashboard = () => {
               </ContainerCustom>
             </Link>
           </Col>
+
+          <Col md={12} lg={4}>
+            <Link to='/admin/classifieds' className='text-decoration-none'>
+              <ContainerCustom>
+                <div className='text-center'>
+                  <h3 className='title'>Admin - Classifieds</h3>
+                  <span>Products | Categories | Orders</span>
+                </div>
+              </ContainerCustom>
+            </Link>
+          </Col>
         </Row>
       </div>
     </Container>

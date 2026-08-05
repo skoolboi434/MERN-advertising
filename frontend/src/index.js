@@ -17,6 +17,7 @@ import SingleAdvertiser from './screens/SingleAdvertiser.jsx';
 import UserProfile from './screens/UserProfile.jsx';
 import AdminDashboard from './screens/admin/AdminDashboard.jsx';
 import AccountsDashboard from './screens/admin/accounts/AccountsDashboard.jsx';
+import ClassifiedsDashboard from './screens/admin/classifieds/ClassifiedsDashboard.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
       {/* Admin Routes */}
       <Route path='/admin' element={<AdminDashboard />} />
       <Route path='/admin/accounts' element={<AccountsDashboard />} />
+      <Route path='/admin/classifieds' element={<ClassifiedsDashboard />} />
 
       <Route path='/login' element={<LoginScreen />} />
       <Route path='/register' element={<RegisterScreen />} />
