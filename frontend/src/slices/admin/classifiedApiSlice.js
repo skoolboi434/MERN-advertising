@@ -17,8 +17,23 @@ export const classifiedApiSlice = apiSlice.injectEndpoints({
         body: data
       }),
       invalidatesTags: ['Product']
+    }),
+    getCategories: builder.query({
+      query: () => ({
+        url: `${ADMIN_URL}/categories`
+      }),
+      keepUnusedDataFor: 5,
+      providesTags: ['Category']
+    }),
+    createCategory: builder.mutation({
+      query: data => ({
+        url: `${ADMIN_URL}/categories`,
+        method: 'POST',
+        body: data
+      }),
+      invalidatesTags: ['Category']
     })
   })
 });
 
-export const { useGetProductsQuery, useCreateProductMutation } = classifiedApiSlice;
+export const { useGetProductsQuery, useCreateProductMutation, useCreateCategoryMutation, useGetCategoriesQuery } = classifiedApiSlice;
